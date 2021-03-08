@@ -79,7 +79,7 @@ def login():
         user = User.query.filter_by(username=username).first()
 
         if user is None or not check_password_hash(user.password, password):
-            flask("Incorrect Username or Password. Please try again")
+            flash("Incorrect Username or Password. Please try again")
             return redirect(url_for('index'))
 
         login_user(user, remember=form.remember_me.data)

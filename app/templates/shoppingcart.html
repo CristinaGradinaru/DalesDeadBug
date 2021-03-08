@@ -9,15 +9,24 @@
 
 
     {% for objects in cart %}
-        <h1>BREAK!!!!!</h1>
         {% if current_user.id == objects.user_id %}
-            <h1>{{ objects.service_name }}</h1>
-            <p>{{ objects.description }}</p>
-            objects
-            <form action="{{ url_for("removecartplan", cart_id=objects.id) }}" method="post">
-                <input type="submit" value="Delete" class="btn btn-danger">
-            </form>
-
+        <div class="cart-item">
+            <div class="placeholder">
+                <img src="https://via.placeholder.com/150" alt="some image">
+            </div>
+            <div class="cart-item2">
+                <div>
+                    <h2>{{ objects.plan.service_name }}</h2>
+                    <p>{{ objects.plan.description }} </p>
+                </div>
+                <div>
+                    <p>$ {{ objects.plan.price }}</p>
+                    <form action="{{ url_for("removecartplan", cart_id=objects.id) }}" method="post">
+                        <input type="submit" value="Remove from Cart" class="btn btn-danger cstbtn">
+                    </form>
+                </div>
+            </div>
+        </div>
         {% endif %}
     {% endfor %}
 
